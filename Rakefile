@@ -1,3 +1,5 @@
+
+
 require 'active_record'
 include ActiveRecord::Tasks
 
@@ -22,4 +24,13 @@ namespace :db do
     File.delete('db/schema.rb')
     drop_db
   end
+  
+  require 'bundler/setup'
+  Bundler.require
+
+  ActiveRecord::Base.establish_connection(
+    :adapter => "sqlite3",
+    :database => "db/students.sqlite"
+  )
+
 end
